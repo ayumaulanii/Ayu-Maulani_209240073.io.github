@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayu Maulani Store - Fashion & Lifestyle</title>
+    <style>
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 1rem 2rem;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #ff6b6b;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ff6b6b;
+        }
+
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: #ff6b6b;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 400px;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/c15fe4ab-c2d9-4cae-97db-6f2919f4cee7.png') center/cover no-repeat;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #ff6b6b;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #ff5252;
+            transform: translateY(-2px);
+        }
+
+        /* Products Section */
+        .products {
+            max-width: 1200px;
+            margin: 0 auto 4rem;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: #ff6b6b;
+            margin: 1rem auto 0;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-image {
+            height: 250px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-title {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .product-price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #ff6b6b;
+            margin-bottom: 1rem;
+        }
+
+        .product-description {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .add-to-cart {
+            width: 100%;
+            padding: 0.7rem;
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .add-to-cart:hover {
+            background-color: #ff5252;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 50px;
+            height: 3px;
+            background-color: #ff6b6b;
+        }
+
+        .footer-column p, .footer-column a {
+            color: #bbb;
+            margin-bottom: 0.8rem;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: #ff6b6b;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: #444;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: #ff6b6b;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 3rem;
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        /* Cart Modal */
+        .cart-modal {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100%;
+            background-color: white;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            transition: right 0.3s;
+            z-index: 1000;
+            padding: 2rem;
+        }
+
+        .cart-modal.active {
+            right: 0;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .cart-items {
+            max-height: 60vh;
+            overflow-y: auto;
+        }
+
+        .cart-item {
+            display: flex;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item-image {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            margin-right: 1rem;
+        }
+
+        .cart-item-details {
+            flex: 1;
+        }
+
+        .cart-item-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .cart-item-price {
+            color: #ff6b6b;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .remove-item {
+            background: none;
+            border: none;
+            color: #999;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
+        .cart-total {
+            margin-top: 2rem;
+            text-align: right;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            margin-top: 1rem;
+            padding: 1rem;
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .checkout-btn:hover {
+            background-color: #ff5252;
+        }
+
+        /* Overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            display: none;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .cart-modal {
+                width: 320px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                height: 300px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <nav class="navbar">
+            <a href="#" class="logo">Ayu Maulani</a>
+            <ul class="nav-links">
+                <li><a href="#">Beranda</a></li>
+                <li><a href="#products">Produk</a></li>
+                <li><a href="#about">Tentang Kami</a></li>
+                <li><a href="#">Kontak</a></li>
+                <li class="cart-icon" id="cart-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <span class="cart-count">0</span>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Koleksi Fashion Eksklusif</h1>
+        <p>Temukan gaya terbaik Anda dengan koleksi pilihan dari Ayu Maulani Store. Produk berkualitas dengan harga terjangkau.</p>
+        <a href="#products" class="btn">Belanja Sekarang</a>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about" style="max-width: 1200px; margin: 0 auto 4rem; padding: 0 2rem;">
+        <h2 class="section-title">Tentang Kami</h2>
+        <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 3px 10px rgba(0,0,0,0.1);">
+            <p style="margin-bottom: 1rem;">Ayu Maulani Store adalah toko fashion online yang menyediakan berbagai macam pakaian wanita berkualitas dengan harga terjangkau.</p>
+            <p>Kami berkomitmen untuk memberikan pengalaman berbelanja yang menyenangkan dan produk-produk terbaik untuk pelanggan kami.</p>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <h2 class="section-title">Produk Unggulan</h2>
+        <div class="product-grid">
+            <!-- Product 1 -->
+            <div class="product-card">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/97643604-1547-4ffc-8498-792f8db67801.png" class="product-image" alt="Baju wanita elegan warna pastel dengan detail lace dan potongan modern">
+                <div class="product-info">
+                    <h3 class="product-title">Blus Lace Elegan</h3>
+                    <p class="product-price">Rp 249.000</p>
+                    <p class="product-description">Blus wanita dengan detail lace halus dan potongan modern, nyaman dipakai sehari-hari.</p>
+                    <button class="add-to-cart" data-id="1" data-name="Blus Lace Elegan" data-price="249000">+ Tambahkan</button>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product-card">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/50eac194-4645-4585-a1f1-5ec32034dd5b.png" class="product-image" alt="Gamis syari warna earth tone dengan motif bunga minimalis">
+                <div class="product-info">
+                    <h3 class="product-title">Gamis Syari Minimalis</h3>
+                    <p class="product-price">Rp 399.000</p>
+                    <p class="product-description">Gamis syari dengan material katun berkualitas tinggi dan motif bunga minimalis.</p>
+                    <button class="add-to-cart" data-id="2" data-name="Gamis Syari Minimalis" data-price="399000">+ Tambahkan</button>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product-card">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/106ec7cf-3915-47cc-be7b-9125329f2bc8.png" class="product-image" alt="Setelan baju dan rok wanita warna monokrom dengan gaya profesional">
+                <div class="product-info">
+                    <h3 class="product-title">Setelan Kerja Monokrom</h3>
+                    <p class="product-price">Rp 349.000</p>
+                    <p class="product-description">Setelan kerja stylish terdiri dari blazer dan rok pensil warna hitam putih.</p>
+                    <button class="add-to-cart" data-id="3" data-name="Setelan Kerja Monokrom" data-price="349000">+ Tambahkan</button>
+                </div>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="product-card">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/9a153a53-906e-4b1d-aadc-5f4021554284.png" class="product-image" alt="Dress panjang warna cerah dengan pola bunga tropis">
+                <div class="product-info">
+                    <h3 class="product-title">Dress Bunga Tropis</h3>
+                    <p class="product-price">Rp 299.000</p>
+                    <p class="product-description">Dress wanita dengan material nyaman dan motif bunga tropis yang cerah.</p>
+                    <button class="add-to-cart" data-id="4" data-name="Dress Bunga Tropis" data-price="299000">+ Tambahkan</button>
+                </div>
+            </div>
+
+            <!-- Product 5 -->
+            <div class="product-card">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/9a977fc6-95a4-460c-bf2f-76a50284b2c4.png" class="product-image" alt="Tunik panjang wanita warna solid dengan detail bordir tangan">
+                <div class="product-info">
+                    <h3 class="product-title">Tunik Bordir Exclusive</h3>
+                    <p class="product-price">Rp 279.000</p>
+                    <p class="product-description">Tunik panjang dengan detail bordir tangan eksklusif dan material rayon premium.</p>
+                    <button class="add-to-cart" data-id="5" data-name="Tunik Bordir Exclusive" data-price="279000">+ Tambahkan</button>
+                </div>
+            </div>
+
+            <!-- Product 6 -->
+            <div class="product-card">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/550efcb6-8999-483a-9e84-fb12e01cb301.png" class="product-image" alt="Jas wanita formal warna abu-abu dengan potongan slim fit">
+                <div class="product-info">
+                    <h3 class="product-title">Blazer Formal Slim Fit</h3>
+                    <p class="product-price">Rp 459.000</p>
+                    <p class="product-description">Blazer wanita formal dengan potongan slim fit yang menonjolkan siluet tubuh.</p>
+                    <button class="add-to-cart" data-id="6" data-name="Blazer Formal Slim Fit" data-price="459000">+ Tambahkan</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Tentang Ayu Maulani</h3>
+                <p>Kami menyediakan produk fashion berkualitas dengan harga terjangkau untuk wanita modern.</p>
+                <div class="social-links">
+                    <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+                    <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+                    <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h3>Info Kontak</h3>
+                <p><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 5px;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg> Jl. Mawar No. 15, Jakarta</p>
+                <p><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 5px;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg> +62 812-3456-7890</p>
+                <p><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 5px;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg> hello@ayumaulani.com</p>
+            </div>
+
+            <div class="footer-column">
+                <h3>Jam Operasional</h3>
+                <p>Senin - Jumat: 09.00 - 17.00</p>
+                <p>Sabtu: 10.00 - 15.00</p>
+                <p>Minggu & Hari Libur: Tutup</p>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <p>© 2023 Ayu Maulani Store. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Cart Modal -->
+    <div class="cart-modal" id="cart-modal">
+        <div class="cart-header">
+            <h2>Keranjang Belanja</h2>
+            <button class="close-cart" id="close-cart">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+        
+        <div class="cart-items" id="cart-items">
+            <!-- Cart items will be displayed here -->
+            <p class="empty-cart-message">Keranjang belanja anda kosong.</p>
+        </div>
+        
+        <div class="cart-total">
+            Total: <span id="cart-total">Rp 0</span>
+        </div>
+        
+        <button class="checkout-btn" id="checkout-btn">Checkout</button>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Cart functionality
+            const cartIcon = document.getElementById('cart-icon');
+            const cartModal = document.getElementById('cart-modal');
+            const closeCart = document.getElementById('close-cart');
+            const overlay = document.getElementById('overlay');
+            const cartItemsContainer = document.getElementById('cart-items');
+            const cartTotalElement = document.getElementById('cart-total');
+            const checkoutBtn = document.getElementById('checkout-btn');
+            const addToCartButtons = document.querySelectorAll('.add-to-cart');
+            const cartCount = document.querySelector('.cart-count');
+
+            let cartItems = [];
+            let total = 0;
+
+            // Toggle cart modal
+            cartIcon.addEventListener('click', () => {
+                cartModal.classList.add('active');
+                overlay.classList.add('active');
+            });
+
+            closeCart.addEventListener('click', () => {
+                cartModal.classList.remove('active');
+                overlay.classList.remove('active');
+            });
+
+            overlay.addEventListener('click', () => {
+                cartModal.classList.remove('active');
+                overlay.classList.remove('active');
+            });
+
+            // Initialize cart from localStorage
+            function initCart() {
+                const savedCart = localStorage.getItem('cart');
+                if (savedCart) {
+                    cartItems = JSON.parse(savedCart);
+                    updateCart();
+                }
+            }
+
+            // Add to cart functionality
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const id = button.dataset.id;
+                    const name = button.dataset.name;
+                    const price = parseInt(button.dataset.price);
+                    
+                    // Check if item already exists in cart
+                    const existingItem = cartItems.find(item => item.id === id);
+                    
+                    if (existingItem) {
+                        existingItem.quantity += 1;
+                    } else {
+                        cartItems.push({
+                            id,
+                            name,
+                            price,
+                            quantity: 1
+                        });
+                    }
+                    
+                    saveCart();
+                    updateCart();
+                    
+                    // Show success message
+                    alert(`${name} telah ditambahkan ke keranjang!`);
+                });
+            });
+
+            // Save cart to localStorage
+            function saveCart() {
+                localStorage.setItem('cart', JSON.stringify(cartItems));
+            }
+
+            // Update cart UI
+            function updateCart() {
+                // Update cart items
+                if (cartItems.length === 0) {
+                    cartItemsContainer.innerHTML = '<p class="empty-cart-message">Keranjang belanja anda kosong.</p>';
+                } else {
+                    cartItemsContainer.innerHTML = '';
+                    let totalPrice = 0;
+                    
+                    cartItems.forEach(item => {
+                        totalPrice += item.price * item.quantity;
+                        
+                        const cartItemElement = document.createElement('div');
+                        cartItemElement.className = 'cart-item';
+                        cartItemElement.innerHTML = `
+                            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/50370460-8c37-4de6-be25-c4eb7e4e4419.png" class="cart-item-image" alt="Gambar produk ${item.name}">
+                            <div class="cart-item-details">
+                                <h4 class="cart-item-title">${item.name}</h4>
+                                <p class="cart-item-price">Rp ${item.price.toLocaleString('id-ID')} x ${item.quantity}</p>
+                                <button class="remove-item" data-id="${item.id}">Hapus</button>
+                            </div>
+                        `;
+                        
+                        cartItemsContainer.appendChild(cartItemElement);
+                    });
+                    
+                    // Update total
+                    cartTotalElement.textContent = `Rp ${totalPrice.toLocaleString('id-ID')}`;
+                    total = totalPrice;
+                    
+                    // Add event listeners to remove buttons
+                    const removeButtons = document.querySelectorAll('.remove-item');
+                    removeButtons.forEach(button => {
+                        button.addEventListener('click', () => {
+                            const id = button.dataset.id;
+                            cartItems = cartItems.filter(item => item.id !== id);
+                            saveCart();
+                            updateCart();
+                        });
+                    });
+                }
+                
+                // Update cart count
+                const itemCount = cartItems.reduce((count, item) => count + item.quantity, 0);
+                cartCount.textContent = itemCount;
+                cartCount.style.display = itemCount > 0 ? 'flex' : 'none';
+            }
+
+            // Checkout button
+            checkoutBtn.addEventListener('click', () => {
+                if (cartItems.length === 0) {
+                    alert('Keranjang belanja anda kosong.');
+                } else {
+                    alert(`Terima kasih telah berbelanja! Total pembelian: Rp ${total.toLocaleString('id-ID')}`);
+                    cartItems = [];
+                    saveCart();
+                    updateCart();
+                    cartModal.classList.remove('active');
+                    overlay.classList.remove('active');
+                }
+            });
+
+            // Initialize cart
+            initCart();
+        });
+    </script>
+</body>
+</html>
+
